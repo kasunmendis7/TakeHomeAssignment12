@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void lis(int array[], int lis_arr[], int n);
+
+int main(){
+    int array[]={10,22,9,33,21,50,41,60,80};
+    int n=sizeof(array)/sizeof(array[0]);
+    int lis_arr[n];
+    lis(array, lis_arr, n);
+    for(int i=0; i<n; i++){
+        printf("%d ", lis_arr[i]);
+    }
+    printf("\n");
+    return 0;
+}
+
+void lis(int array[], int lis_arr[], int n){
+    for(int i=0; i<n; i++){
+        lis_arr[i] = 1;
+        for(int j=0; j<i; j++){
+            if((array[i] > array[j]) && lis_arr[i]<lis_arr[j]+1){
+                lis_arr[i]=lis_arr[j]+1;
+            }
+        }
+    }
+}
